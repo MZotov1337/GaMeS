@@ -51,8 +51,31 @@ class ball():
         self.x Рё self.y СЃ СѓС‡РµС‚РѕРј СЃРєРѕСЂРѕСЃС‚РµР№ self.vx Рё self.vy, СЃРёР»С‹ РіСЂР°РІРёС‚Р°С†РёРё, РґРµР№СЃС‚РІСѓСЋС‰РµР№ РЅР° РјСЏС‡,
         Рё СЃС‚РµРЅ РїРѕ РєСЂР°СЏРј РѕРєРЅР° (СЂР°Р·РјРµСЂ РѕРєРЅР° 800С…600).
         """
+        if self.y <= 500:
+        self.vy -= 1.2
+        self.y -= self.vy
         self.x += self.vx
-        self.y -= self.vy + 10/2
+        self.vx *= 0.99
+        self.set_coords()
+    else:
+        if self.vx**2 + self.vy**2 > 10:
+            self.vy =- self.vy / 2
+            self.vx = self.vx / 2
+            self.y = 499
+        if self.live < 0:
+            balls.pop(balls.index(self))
+            canv.delete(self.id)
+        else:
+            self.live -= 1
+    if self.x > 780:
+        self.vx =- self.vx / 2
+        self.x = 779
+    def hittest(self,ob):
+        if abs(ob.x - self.x) <= (self.r + ob.r) and abs(ob.y - self.y) <= (self.r + ob.r):
+            return True
+        else:
+            return False
+            
 
     def hittest(self, obj):
         """Р¤СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂСЏРµС‚ СЃС‚Р°Р»РєРёРІР°Р»РєРёРІР°РµС‚СЃСЏ Р»Рё РґР°РЅРЅС‹Р№ РѕР±СЊРµРєС‚ СЃ С†РµР»СЊСЋ, РѕРїРёСЃС‹РІР°РµРјРѕР№ РІ РѕР±СЊРµРєС‚Рµ obj.
