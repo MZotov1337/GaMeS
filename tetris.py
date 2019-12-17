@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 from tkinter import Canvas, Label, Tk, StringVar, Button, LEFT
 from random import choice, randint
 
@@ -21,7 +19,7 @@ class GameCanvas(Canvas):
         cleaned_lines = 0
         YY = sorted(YY)
         for y in YY:
-            if sum(1 for Piece in self.find_withtag('game') if self.coords(Piece)[3] == y) == ((Arkitecture.width - 20) // Arkitecture.LENGTH):
+            if sum(1 for Piece in self.find_withtag('game') if self.coords(Piece)[3] == y) == ((Arkitecture.width - 20) // Arkitecture.LENGTH): 
                 self.clean_line([Piece for Piece in self.find_withtag('game') if self.coords(Piece)[3] == y])
                 self.drop_Piecees([Piece for Piece in self.find_withtag('game') if self.coords(Piece)[3] < y])
                 cleaned_lines += 1
